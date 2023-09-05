@@ -1,332 +1,550 @@
-LAB PROGRAMS
-1. C Program to find Mechanical Energy of a particle
-using E=mgh+1/2 mv2
-.
+//1.C Program to find Mechanical Energy of a particle using E=mgh+1/2
+mv2.
+#include<stdio.h>
+void main()
+{
+ float m,h,v,energy;
+ float g=9.8;
+ printf("Enter the mass of the body:\n");
+ scanf("%f",&m);
+ printf("Enter the velocity of the body:\n");
+ scanf("%f",&v);
+ printf("Enter the displacement of the body:\n");
+ scanf("%f",&h);
+ energy=m*g*h+0.5*m*v*v;
+ printf("The Mechanical Energy of the body= %f\n",energy);
+}
+/*Output
+student@student-virtual-machine:~$ cc Energy.c
+student@student-virtual-machine:~$ ./a.out
+Enter the mass of the body:
+2
+Enter the velocity of the body:
+4
+Enter the displacement of the body:
+5
+The Mechanical Energy of the body= 114.000000
+*/
+
+
+//2. C Program to convert Kilometres into Metres and Centimetres .
 # include<stdio.h>
 void main()
 {
-float m,h,v,me;
-float g=9.8;
-printf(“Enter the mass of the body:”);
-scanf(“%f”,&m);
-printf(“Enter the velocity of the body:”);
-scanf(“%f”,&v);
-printf(“Enter the displacement of the body:”);
-scanf(“%f”,&h);
-me=m*g*h+0.5*m*v*v;
-printf(“The Mechanical Energy of the body= %d”,me);
+ float km,m,cm;
+ printf("Enter the distance in Kilometres:\n");
+ scanf("%f",&km);
+ m=km*1000;
+ cm=km*100000;
+ printf("The given distance in metres =%f\nThe given distance in
+Centimetres =%f\n",m,cm);
 }
-2. C Program to convert Kilometres into Metres and
-Centimetres .
+/*Output
+student@student-virtual-machine:~$ cc kilo.c
+student@student-virtual-machine:~$ ./a.out
+Enter the distance in Kilometres:
+100
+The given distance in metres =100000.000000
+The given distance in Centimetres =10000000.000000
+*/
+
+
+//3.C Program to check whether the given character is an Uppercase or a
+Lowercase or a Special character
 # include<stdio.h>
 void main()
 {
-float km,m,cm;
-printf(“Enter the distance in Kilometres:”);
-scanf(“%f”,&km);
-m=km*1000;
-cm=km*100000;
-printf(“The given distance in metres =%f \n The given
-distance in Centimetres =%f :”,m,cm);
+ char c;
+ printf("Enter any Character:\n");
+ scanf("%c",&c);
+ if(c>=65&&c<=90)
+ printf("It is an Uppercase Character\n");
+ else if(c>=97&&c<=122)
+ printf("It is an Lowercase Character\n");
+ else
+ printf("It is an Special Character\n");
 }
-3. C Program to check whether the given character is
-an Uppercase or a Lowercase or a Special character.
-# include<stdio.h>
+/*Output
+student@student-virtual-machine:~$ cc character.c
+student@student-virtual-machine:~$ ./a.out
+Enter any Character:
+e
+It is an Lowercase Character
+student@student-virtual-machine:~$ ./a.out
+Enter any Character:
+E
+It is an Uppercase Character
+*/
+
+
+//5.C Program to implement Matrix Multiplication and validate the rules
+of Multiplication.
+#include<stdio.h>
+#include<stdlib.h>
 void main()
 {
-char c;
-printf(“Enter any Character:”);
-scanf(“%c”,&c);
-if(c>=65&&c<=90)
-printf(“It is an Uppercase Character.”);
-else if(c>=97&&c<=122)
-printf(“It is an Lowercase Character.”);
-else
-printf(“It is an Special Character.”);
-}
-4. C Program to balance the given chemical equation
-values x, y, p, q of a simple chemical equation of the
-type: the task is to find out the values of constants b1,
-b2, b3 such that the equation is balanced on both the
-sides and it must be in the reduced form.
-# include<stdio.h>
-void main()
-{
-int x=2,y=3,p=4,q=5,b1,b2,b3,temp;
-if(p%x==0&&q&y==0)
-{
-b1=p/x;
-b2=q/y;
-b3=1;
-}
-else
-{
-p=p*y;
-q=q*x;
-b3=x*y;
-temp=gcd(p,gcd(q,b3));
-b1=p/temp;
-b2=q/temp;
-b3=b3/temp;
-}
-printf(“The values of \n b1=%d \n b2=%d \n
-b3=%d”,b1,b2,b3);
-}
-int gcd(int a, int b)
-{
-if(b==0)
-return a;
-return gcd(b,a%b);
-}
-5. C Program to implement Matrix Multiplication and
-validate the rules of Multiplication.
-# include<stdio.h>
-void main()
-{
-int a[10][10], b[10][10], c[10][10],I,j,k,m,n,p,q;
-printf(“\t Give the order of first matrix:\t\t m=”);
-scanf(“%d”,&m);
-printf(“\t\t n=”);
-scanf(“%d”,&n);
-printf(“\t Give the elements of first matrix:”);
-for(i=0;i<m;i++)
-{
-for(j=0;j<n;j++)
-{
-scanf(“%d”,&a[i][j]);
-}}
-printf(“\t Give the order of second matrix:\t\t p=”);
-scanf(“%d”,&mp);
-printf(“\t\t q=”);
-scanf(“%d”,&q);
-printf(“\t Give the elements of second matrix:”);
-for(i=0;i<p;i++)
-{
-for(j=0;j<q;j++)
-{
-scanf(“%d”,&b[i][j]);
-}}
-if(p!=n)
-printf(“\t Such Matrix Multiplication is not possible.”);
+ int m,n,p,q,i,j,k,a[10][10],b[10][10],c[10][10];
+ printf("enter the order of matrix A\n");
+ scanf("%d%d",&m,&n);
+ printf("enter the order of matrix B\n");
+ scanf("%d%d",&p,&q);
+ if(n!=p)
+ {
+ printf("matrix multiplication not possible\n");
+ exit(0);
+ }
 else
 {
+ printf("enter the elements of the first matrix \n");
+ for(i=0;i<m;i++)
+ for(j=0;j<n;j++)
+ scanf("%d",&a[i][j]);
+
+printf("enter the elements of the second matrix \n");
+ for(i=0;i<p;i++)
+ for(j=0;j<q;j++)
+ scanf("%d",&b[i][j]);
+
 for(i=0;i<m;i++)
 {
-for(j=0;i<q;j++)
-{
-C[i][j]=0;
-for(k=0;k<n;k++)
-{
-c[i][j]+=a[i][k]*b[k][j];
-}}}
-printf(“The product of 2 Matrices is=”);
-for(i=0;i<m;i++)
-{
-for(j=0;i<q;j++)
-{
-printf(“\t %d”,c[i][j];
+ for(j=0;j<q;j++)
+ {
+ c[i][j]=0;
+ for(k=0;k<n;k++)
+ {
+ c[i][j]= c[i][j]+a[i][k]*b[k][j];
+ }
+ }
 }
-printf(“\n”);
-}}
-6. C Program to Bubble Sort.
-# include<stdio.h>
+printf("the product of 2 matrices are : \n");
+for(i=0;i<m;i++)
+{
+ for(j=0;j<q;j++)
+
+ printf("%d\t",c[i][j]);
+
+printf("\n");
+}
+}
+}
+/*Output
+student@student-virtual-machine:~$ cc matrix.c
+student@student-virtual-machine:~$ ./a.out
+enter the order of matrix A
+2 2
+enter the order of matrix B
+2 2
+enter the elements of the first matrix
+1 2 3 4
+enter the elements of the second matrix
+1 1 1 1
+the product of 2 matrices are :
+3 3
+7 7
+student@student-virtual-machine:~$ ./a.out
+enter the order of matrix A
+2 2
+enter the order of matrix B
+3 2
+matrix multiplication not possible
+*/
+
+
+//6. C Program to Bubble Sort
+#include<stdio.h>
 void main()
 {
-Int arr[100];
-int i,j,temp,size;
-printf(“\n Enter the size of the array:”);
-scanf(“%d”,&size);
-printf(“\n Enter the array elements:”);
-for(i=0;i<size;i++)
-{
-scanf(“%d”,&arr[i]);
+ int n,i,j,a[20],temp;
+ printf("enter the number of elements\n");
+ scanf("%d",&n);
+ /*read or input the elements to sort*/
+
+ printf("read the elements\n");
+ for(i=0;i<n;i++)
+ scanf("%d",&a[i]);
+
+ /*method to sort the elements in ascending order*/
+ for (i=1 ; i<n ; i++) //outer loop
+ {
+ for (j = 0 ; j <n-i ; j++) // inner loop
+ { if (a[j] > a[j+1])
+ { temp = a[j];
+ a[j] = a[j+1];
+ a[j+1] = temp;
+ }
+ }
+ }
+
+ /* print the sorted array*/
+
+ printf("the sorted elements are\n");
+ for(i=0;i<n;i++)
+ printf("%d\n",a[i]);
 }
-for(i=1;i<size;i++)
-{
-for(j=0;j<size-1;j++)
-{
-if (a[j]<a[j+1])
-{
-temp=a[j];
-a[j]=a[j+1];
-a[j+1]=a{j];
-}}}
-printf(“\n After Sorting:\n”);
-for(i=0;i<size;i++)
-{
-printf(“%d”,arr[i]);
-}
-7.
-a) C Program to compute cos(x) using Taylor’s Series
-approximation. Compare your result with the built-in
-math library function.
+/*student@student-virtual-machine:~$ cc bubble.c
+student@student-virtual-machine:~$ ./a.out
+enter the number of elements
+5
+read the elements
+50 40 30 20 10
+the sorted elements are
+10
+20
+30
+40
+50
+student@student-virtual-machine:~$ cc bubble.c
+student@student-virtual-machine:~$ ./a.out
+enter the number of elements
+3
+read the elements
+2 1 8
+the sorted elements are
+1
+2
+8
+*/
+
+
+/7a)C Program to compute cos(x) using Taylorâ€™s Series approximation.
+//Compare your result with the built-in math library function.
 # include<stdio.h>
 #include<math.h>
 void main()
 {
-int i,n;
-float x,sum=1,t=1;
-printf(“Enter the values for x:”);
-scanf(“%f”,&x);
-printf(“\n Enter the values for n:”);
-scanf(“%d”,&n);
-x=x*3.14159/180;
-for(i=1;i<=n;i++)
-{
-t=t*(-1)*x*x/(2*i*(2*i-1));
-sum+=t;
+ int i,n;
+ float x,sum=1,t=1;
+ printf("Enter the values for x:");
+ scanf("%f",&x);
+ printf("\n Enter the values for n:");
+ scanf("%d",&n);
+ x=x*3.14159/180;
+ for(i=1;i<=n;i++)
+ {
+ t=t*(-1)*x*x/(2*i*(2*i-1));
+ sum+=t;
+ }
+ printf("The value of cos(%f) is =%.4f\n",x,sum);
+ printf("Using Library function, the value of cos(%f) is
+=%.4f\n",x,cos(x));
 }
-printf(“The value of cos(%f) is =%.4f”,x,sum);
-printf(“Using Library function, the value of cos(%f) is
-=%.f”,x,cos(x));
-}
-b) C Program to compute sin(x) using Taylor’s Series
-approximation. Compare your result with the built-in
-math library function.
-# include<stdio.h>
+/*output
+student@student-virtual-machine:~$ cc labcosine2.c -lm
+student@student-virtual-machine:~$ ./a.out
+Enter the values for x:45
+Enter the values for n:5
+The value of cos(0.785398) is =0.7071
+Using Library function, the value of cos(0.785398) is =0.7071
+*/
+
+
+//7b)C Program to compute sin(x) using Taylorâ€™s Series approximation.
+//Compare your result with the built-in math library function.
+#include<stdio.h>
 #include<math.h>
 void main()
 {
-int i,n;
-float x,sum=x,t=1;
-printf(“Enter the values for x:”);
-scanf(“%f”,&x);
-printf(“\n Enter the values for n:”);
-scanf(“%d”,&n);
-x=x*3.14159/180;
-for(i=1;i<=n;i++)
-{
-t=t*(-1)*x*x/(2*i*(2*i-1));
-sum+=t;
+ int i, n;
+ float x, sum, t;
+
+
+ printf(" Enter the value for x in degree : ");
+ scanf("%f",&x);
+
+ printf(" Enter the value for n : ");
+ scanf("%d",&n);
+
+ x=x*3.14159/180;
+ t=x;
+ sum=x;
+
+ /* Loop to calculate the value of Sine */
+ for(i=1;i<=n;i++)
+ {
+ t=(t*(-1)*x*x)/(2*i*(2*i+1));
+ sum=sum+t;
+ }
+
+ printf(" The value of Sin(%f) = %.4f\n",x,sum);
+ printf("using library function sin(%f)=%.4f\n",x,sin(x));
+
+
 }
-printf(“The value of sin(%f) is =%.4f”,x,sum);
-printf(“Using Library function, the value of sin(%f) is
-=%.f”,x,sin(x));
-}
-8. C Program to implement String operations such as
-compare, concatenate and string length.
+/*Output
+student@student-virtual-machine:~$ cc labsine2.c -lm
+student@student-virtual-machine:~$ ./a.out
+Enter the value for x in degree : 45
+Enter the value for n : 5
+The value of Sin(0.785398) = 0.7071
+using library function sin(0.785398)=0.7071
+*/
+
+
+
+//8. C Program to implement String operations such as compare,
+concatenate and string length -- 1st method.
 # include<stdio.h>
-# include<stdlib.h>
-int length(char str[]);
-int compare(char str1[],char str2[]);
-void concatenate(char str1[],char str2[]);
+int length(char s1[]);
+void compare(char s1[], char s2[]);
+void concat(char s1[], char s2[]);
 void main()
 {
-char str1[30], str2[30];
-int a;
-printf(“enter string 1 \n”);
-scanf(“%s”,&str1);
-a=length(str1);
-printf(“length of %s =%d \n”,str1,a);
-printf(“enter string 2 \n”);
-scanf(“%s”,&str2);
-a=compare(str1,str2);
-if(a==0)
+ char s1[200], s2[100];
+ int len;
+ printf("\nEnter the String s1: ");
+ gets(s1);
+ printf("\nEnter String s2 :");
+ gets(s2);
+len = length(s1);
+printf("Length of the String s1 is : %d\n", len);
+compare(s1,s2);
+concat(s1, s2);
+}
+//to find the length of the string
+int length(char s1[])
 {
-printf((“%s and %s are identical \n”, str1,str2);
+ int i = 0;
+ while (s1[i] != '\0')
+ i++;
+ return (i);
 }
-else
+void compare(char s1[], char s2[])
 {
-printf((“%s and %s are not identical \n”, str1,str2);}
-concatenate(str1,str2);
+ int i = 0;
+ while (s1[i] == s2[i] && s1[i] != '\0')
+ i++;
+ if (s1[i] > s2[i])
+ printf("String Not equal\n");
+ else if (s1[i] < s2[i])
+ printf("String Not equal\n");
+ else
+ printf("Strings are equal\n");
 }
-int length(char str[])
+void concat(char s1[], char s2[])
 {
-int len=0;
-while(str[len]!=’\0’)
-len++;
-return len;
+ int i, j;
+ i = length(s1);
+ s1[i]=' ';
+ i=i+1;
+ for (j = 0; s2[j] != '\0';i++,j++)
+ {
+ s1[i] = s2[j];
+ }
+ s1[i] = '\0';
+ printf("Concatenated String: %s\n",s1);
 }
-int compare(char str1[], char str2[])
-{
-int i=0;
-while(str1[1]==str2[i])
-{if(str1[i]==’\0’ || str2[i]== ’\0’)
-break;
-i++;
-}
-return str1[i]-str2[i];
-}
-void concatenate(char str1[],char str2[])
-{
-int i=0,j=0;
-while(str1[i]!= ’/0’)
-{
-i++;
-}
-while(str2[j]!= ’/0’)
-{
-(str1[i]= str2[j];
-i++;
-j++;
-}
-str1[i]=’\0’;
-printf((“concatenated string is %s \n”,str1);
-}
-9.C Program to read, write and compute average
-marks and the students scoring above and below
-average marks for a class of N students.
+/*Output
+student@student-virtual-machine:~$ cc strings.c
+strings.c: In function â€˜mainâ€™:
+strings.c:14:1: warning: â€˜getsâ€™ is deprecated (declared at
+/usr/include/stdio.h:638) [-Wdeprecated-declarations]
+gets(s1);
+^
+strings.c:16:1: warning: â€˜getsâ€™ is deprecated (declared at
+/usr/include/stdio.h:638) [-Wdeprecated-declarations]
+gets(s2);
+^
+/tmp/ccxgvhDc.o: In function `main':
+strings.c:(.text+0x34): warning: the `gets' function is dangerous and
+should not be used.
+student@student-virtual-machine:~$ ./a.out
+Enter the String s1: water
+Enter String s2 :air
+Length of the String s1 is : 5
+String Not equal
+Concatenated String: water air
+student@student-virtual-machine:~$ ./a.out
+Enter the String s1: air
+Enter String s2 :air
+Length of the String s1 is : 3
+Strings are equal
+Concatenated String: air air
+*/
+
+
+//8.C Program to implement String operations such as compare, concatenate
+and string length -- 2nd method
 # include<stdio.h>
+//to find the length of the string
+int length(char s1[])
+{
+int i = 0;
+while (s1[i] != '\0')
+i++;
+return (i);
+}
+//to campare two strings
+void compare(char s1[], char s2[])
+{
+ int i = 0;
+ while (s1[i] == s2[i] && s1[i] != '\0')
+ i++;
+ if (s1[i] > s2[i])
+ printf("String Not equal\n");
+ else if (s1[i] < s2[i])
+ printf("String Not equal\n");
+ else
+ printf("Strings are equal\n");
+
+}
+//to join two strings
+void concat(char s1[], char s2[])
+{
+int i, j;
+i = length(s1);
+ s1[i]=' ';
+ i=i+1;
+for (j = 0; s2[j] != '\0';i++,j++) {
+s1[i] = s2[j];
+}
+s1[i] = '\0';
+printf("Concatenated String: %s\n",s1);
+}
+void main()
+{
+ char s1[200], s2[100];
+ int len;
+ printf("\nEnter the String s1: ");
+ scanf("%s",s1);
+ printf("\nEnter String s2 :");
+ scanf("%s",s2);
+ len = length(s1);
+ printf("Length of the String s1 is : %d\n", len);
+ compare(s1,s2);
+ concat(s1, s2);
+}
+/*Output
+student@student-virtual-machine:~$ cc strings2.c
+student@student-virtual-machine:~$ ./a.out
+Enter the String s1: cat
+Enter String s2 :rat
+Length of the String s1 is : 3
+String Not equal
+Concatenated String: cat rat
+student@student-virtual-machine:~$ ./a.out
+Enter the String s1: cat
+Enter String s2 :cat
+Length of the String s1 is : 3
+Strings are equal
+Concatenated String: cat cat
+*/
+
+
+//9.C Program to read, write and compute average marks and the students
+scoring above and
+//below average marks for a class of N students.
+#include<stdio.h>
 struct student
 {
-int marks;
-}st[10];
+char name[20];
+int stdid;
+float marks;
+char grade[1];
+};
 void main()
 {
 int i,n;
-float total=0,avgmarks;
-printf(“Enter the number of students in class(<=10):”);
-scanf(“%d”,&n);
+float sum=0, average;
+struct student std[100];
+printf("\nEnter the number of student in class\n");
+scanf("%d",&n);
 for(i=0;i<n;i++)
 {
-printf(“Enter the Student %d marks:”,i+1);
-scanf(“%d”,&st[i].marks);
-total+=st[i].marks;
+ printf("Details of students are\n");
+ scanf("%s",std[i].name);
+ scanf("%d",&std[i].stdid);
+ scanf("%f",&std[i].marks);
+ scanf("%s",std[i].grade);
 }
-avgmarks=total/n;
-printf(“\n Average Marks = %.2f”,avgmarks);
+sum=0;
+for(i=0;i<n;i++)
+ sum=sum+std[i].marks;
+average=sum/n;
+printf("The average marks is %f\n",average);
+printf("\n\ndetails of the students above average are\n");
 for(i=0;i<n;i++)
 {
-if(st[i].marks>=avgmarks)
-{
-printf(“\n Student %d marks =%d above
-average”,i+1,st[i].marks);
+ if(std[i].marks>average)
+ {
+ printf("name of the student is %s\n",std[i].name);
+ printf("id of the student is %d\n",std[i].stdid);
+ printf("marks of the student is %f\n",std[i].marks);
+ printf("grade of the student is %s\n",std[i].grade);
+ }
 }
-else
+printf("\n\ndetails of the students below average are\n");
+for(i=0;i<n;i++)
 {
-printf(“\n Student %d marks =%d below
-average”,i+1,st[i].marks);
-}}
-10. C Program using pointers to compute the sum,
-mean and standard deviation of all elements stored in
-an array of N real elements.
-# include<stdio.h>
+ if(std[i].marks<average)
+ {
+ printf("name of the student is %s\n",std[i].name);
+ printf("id of the student is %d\n",std[i].stdid);
+ printf("marks of the student is %f\n",std[i].marks);
+ printf("grade of the student is %s\n",std[i].grade);
+ }
+}
+}
+/*OUtput
+student@student-virtual-machine:~$ cc student.c
+student@student-virtual-machine:~$ ./a.out
+Enter the number of student in class
+2
+Details of students are
+AAA 1 90 A
+Details of students are
+BBB 2 56 C
+The average marks is 73.000000
+details of the students above average are
+name of the student is AAA
+id of the student is 1
+marks of the student is 90.000000
+grade of the student is A
+details of the students below average are
+name of the student is BBB
+id of the student is 2
+marks of the student is 56.000000
+grade of the student is C
+*/
+
+
+//10. C Program using pointers to compute the sum, mean and standard
+deviation of all elements stored in an array of N real //elements.
+#include<stdio.h>
 #include<math.h>
-int main()
+void main()
 {
-float a[100],sum=0.00,mean,variance=0.00,stddev,*p;
-int i,n;
-printf(“Enter the number of data:”);
-scanf(“%d”,&n);
-printf(“Enter the data elements:”);
-p=a;
-for(i=0;i<n;i++)
-{
-scanf(“%f”,p);
-sum+=*p;
-p++;
+ int arr[10],n,i,sum=0;
+ float mean, variance, std_deviation;
+//Assigning array to pointer
+ int *ptr=arr;
+ printf("Enter the number of elements you want to use(<=10):\n");
+ scanf("%d",&n);
+ printf("Enter %d Elements:\n",n);
+ for (i=0;i<n;i++)
+ scanf("%d",&arr[i]);
+//sum of elements of array using pointer
+ for(i=0;i<n;i++)
+ {
+ sum+=*ptr;
+ *ptr++;
+ }
+ mean=sum/n;
+//Display sum,mean and standard deviation on screen
+ printf("Sum = %d\n mean = %0.2f\n",sum,mean);
+ variance = sum / (float)n;
+ std_deviation = sqrt(variance);
+ printf("variance of all elements = %.2f\n", variance);
+ printf("Standard deviation = %.2f\n", std_deviation);
 }
-mean=sum/n;
-p=a;
-for(i=0;i<n;i++)
-{
-variance+=(mean-p)(mean-*p);
-p++;
-}
-stddev=sqrt(variance);
-printf(“\n From the above given data:\n Sum=%.2f\n
-Mean=%.2f\nVariance=%.2f\n Standard
-Deviation=%.2f”,sum,mean,variance,stddev);
-}
-
-
+/*Output
+student@student-virtual-machine:~$ cc mean.c -lm
+student@student-virtual-machine:~$ ./a.out
+Enter the number of elements you want to use(<=10):
+3
+Enter 3 Elements:
+2 3 1
+Sum = 6
+mean = 2.00
+variance of all elements = 2.00
+Standard deviation = 1.41
+*/

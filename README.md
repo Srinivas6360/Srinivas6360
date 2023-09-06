@@ -1,550 +1,487 @@
-//1.C Program to find Mechanical Energy of a particle using E=mgh+1/2
-mv2.
-#include<stdio.h>
-void main()
-{
- float m,h,v,energy;
- float g=9.8;
- printf("Enter the mass of the body:\n");
- scanf("%f",&m);
- printf("Enter the velocity of the body:\n");
- scanf("%f",&v);
- printf("Enter the displacement of the body:\n");
- scanf("%f",&h);
- energy=m*g*h+0.5*m*v*v;
- printf("The Mechanical Energy of the body= %f\n",energy);
-}
-/*Output
-student@student-virtual-machine:~$ cc Energy.c
-student@student-virtual-machine:~$ ./a.out
-Enter the mass of the body:
-2
-Enter the velocity of the body:
-4
-Enter the displacement of the body:
-5
-The Mechanical Energy of the body= 114.000000
-*/
+1)   Find Inverse Laplace transform of F(s)*G(s) for the following: F(s) = 1/s , G(s) = 1/((s^2)+(a^2))
+clc
+clear
+syms t a s u F G
+F=1/s
+G=1/(s^2+a^2)
+f(t)=ilaplace(F)
+g(t)=ilaplace(G)
+convl=int((f(u)*g(t-u)),u,0,t)
+pretty(convl)
+
+OUTPUT:
+F =1/s
+G =1/(a^2 + s^2)
+f(t) =1
+g(t) =sin(a*t)/a
+convl =-(cos(a*t) - 1)/a^2
+ cos(a t) - 1
+- ------------
+ 2
+ a
+1)  Find the inverse Laplace transform of 𝑭(𝒔) =
+𝒔−𝟓
+𝒔 (𝒔−𝟐)𝟐
+clc
+clear
+syms t s
+F = input('enter first func')
+f(t)=ilaplace(F)
+
+OUTPUT:
+enter first func
+(s-5)/(s*(s-2)^2)
+F =(s - 5)/(s*(s - 2)^2)
+f(t) =
+(5*exp(2*t))/4 - (3*t*exp(2*t))/2 - 5/4
 
 
-//2. C Program to convert Kilometres into Metres and Centimetres .
-# include<stdio.h>
-void main()
-{
- float km,m,cm;
- printf("Enter the distance in Kilometres:\n");
- scanf("%f",&km);
- m=km*1000;
- cm=km*100000;
- printf("The given distance in metres =%f\nThe given distance in
-Centimetres =%f\n",m,cm);
-}
-/*Output
-student@student-virtual-machine:~$ cc kilo.c
-student@student-virtual-machine:~$ ./a.out
-Enter the distance in Kilometres:
-100
-The given distance in metres =100000.000000
-The given distance in Centimetres =10000000.000000
-*/
+3)  Write and execute the MATLAB code to find the gradient vector of f(x,y)=xe^(x^2-y^2) with
+respect to vector [x,y] and also plot the contour lines and vectors.
+x = -2:0.2:2;
+y = x';
+z = x .* exp(-x.^2 - y.^2);
+[px,py] = gradient(z);
+%Plotting the contour lines and vectors
+in the same figure.
+figure
+contour(x,y,z)
+hold on
+quiver(x,y,px,py)
+hold off
+
+OUTPUT:
+Gradient of f is given by
+ans =
+exp(- x^2 - y^2) - 2*x^2*exp(- x^2 - y^2)
+-2*x*y*exp(- x^2 - y^2)
 
 
-//3.C Program to check whether the given character is an Uppercase or a
-Lowercase or a Special character
-# include<stdio.h>
-void main()
-{
- char c;
- printf("Enter any Character:\n");
- scanf("%c",&c);
- if(c>=65&&c<=90)
- printf("It is an Uppercase Character\n");
- else if(c>=97&&c<=122)
- printf("It is an Lowercase Character\n");
+3)  Write and execute the MATLAB code to find divergence and show that the divergence of the curl of
+the vector field V=(x, 2 y^2, 3 z^3) is 0.
+syms x y z
+V = [x 2*y^2 3*z^3];
+X = [x y z];
+divCurl = divergence(curl(V,X),X)
+
+OUTPUT:
+div = 1 + 9*z^2 + 4*y
+divCurl = 0
+
+
+4)  Write and execute the MATLAB code to find the dimension a n d b a s i s of subspace spanned by the
+vectors (1, 2, 1, -1),(3,1,0,5) and (0,5,3,-8).
+clc;
+V1 = [1;2;1;-1]; V2 = [3;1;0;5]; V3 =
+[0;5;3;-8];
+V = [V1 V2 V3];
+[R,basiccol]=rref(V);
+R_1=rank(rref(V));
+fprintf('Dimension of subspace spanned
+by the given vectors is given by');
+R_1
+fprintf('Basis of subspace is given
+by');
+B=V(:,basiccol)
+
+OUTPUT:
+Dimension of subspace spanned by the
+given vectors is given by
+R = 2
+Basis of subspace is given by
+B = 1 3
+ 2 1
+ 1 0
+ -1 5
+
+ 
+5)  Write and execute the MATLAB code to verify the rank-nullity theorem for the linear transformation T: R
+3
+→ R
+3 defined by T(x,y,z) = (x + 4y + 7z,2x + 5y + 8z,3x + 6y + 9z).
+clc;
+fprintf('Matrix of Linear
+Transformation is given by');
+A=[1 4 7; 2 5 8; 3 6 9]
+rref(A);
+fprintf('Echelon form of A is given
+by');
+rref(A)
+U=rank(rref(A));
+fprintf('Rank of Linear Transformation
+is given by');
+U
+null(A);
+fprintf('Null space is given by');
+null(A)
+V=size(null(A),2);
+fprintf('Dimension of Null space is
+given by');
+V
+ if U + V == 3
+fprintf('Rank Nullity Theorem holds');
  else
- printf("It is an Special Character\n");
-}
-/*Output
-student@student-virtual-machine:~$ cc character.c
-student@student-virtual-machine:~$ ./a.out
-Enter any Character:
-e
-It is an Lowercase Character
-student@student-virtual-machine:~$ ./a.out
-Enter any Character:
-E
-It is an Uppercase Character
-*/
+fprintf('Rank Nullity Theorem does not
+hold');
+ end
+ 
+OUTPUT:
+Matrix of Linear Transformation is given
+by
+A =
+ 1 4 7
+ 2 5 8
+ 3 6 9
+Echelon form of A is given by
+E = 1 0 -1
+ 0 1 2
+ 0 0 0
+Rank of Linear Transformation is given by
+U = 2
+Null space is given by
+N_S = 0.4082
+ -0.8165
+ 0.4082
+Dimension of Null space is given by
+V = 1
+Rank Nullity Theorem holds
 
 
-//5.C Program to implement Matrix Multiplication and validate the rules
-of Multiplication.
-#include<stdio.h>
-#include<stdlib.h>
-void main()
-{
- int m,n,p,q,i,j,k,a[10][10],b[10][10],c[10][10];
- printf("enter the order of matrix A\n");
- scanf("%d%d",&m,&n);
- printf("enter the order of matrix B\n");
- scanf("%d%d",&p,&q);
- if(n!=p)
- {
- printf("matrix multiplication not possible\n");
- exit(0);
- }
+6)  Write and execute the MATLAB code to find the root of y=cos(x) near 1 with tolerance 0.0001. Carry out
+four iterations by Newton- Raphson method
+f = @(x) (cos(x));
+fd = @(x) (-sin(x));
+x0 = input('Enter initial approximaation:
+');
+n = input('Enter no. of iterations, n:
+');
+tol = input('Enter tolerance, tol: ');
+i = 1;
+while i <= n
+ d=f(x0)/fd(x0);
+ x0 = x0 - d
+ if abs(d) < tol
+fprintf('\nApproximate solution xn= %0.4f
+\n\n',x0)
+ break;
+ else
+i = i+1;
+ end
+end
+
+OUTPUT:
+Enter initial approximaation: 1
+Enter no. of iterations, n: 5
+Enter tolerance, tol: 0.00001
+x0 = 1.6421
+x0 = 1.5707
+x0 = 1.5708
+x0 = 1.5708
+Approximate solution xn= 1.5708  
+
+
+7 )  Write and execute the MATLAB code to find the root of y=sin(x)+cos(x)+exp(x)-8 at 2 and 3 with tolerable
+error 0.00001 by Regula-Falsi method
+syms x;
+% Input Section
+y = input('Enter non-linear equations: ');
+a = input('Enter first guess: ');
+b = input('Enter second guess: ');
+e = 0.00001 ; %input('Tolerable error: ');
+% Finding Functional Value
+fa = eval(subs(y,x,a));
+fb = eval(subs(y,x,b));
+% Implementing the Method
+if fa*fb > 0
+ disp('Given initial values do not
+bracket the root.');
 else
-{
- printf("enter the elements of the first matrix \n");
- for(i=0;i<m;i++)
- for(j=0;j<n;j++)
- scanf("%d",&a[i][j]);
+ c = (a*fb-b*fa)/(fb-fa);
+ fc = eval(subs(y,x,c));
 
-printf("enter the elements of the second matrix \n");
- for(i=0;i<p;i++)
- for(j=0;j<q;j++)
- scanf("%d",&b[i][j]);
+fprintf('\n\na\t\t\tb\t\t\tc\t\t\tf(c)\n')
+;
+ while abs(fc)>e
+fprintf('%f\t%f\t%f\t%f\n',a,b,c,fc);
+ if fa*fc< 0
+ b =c;
+ fb = eval(subs(y,x,b));
+ else
+ a =c;
+ fa = eval(subs(y,x,a));
+ end
+ c = (a*fb-b*fa)/(fb-fa);
+ fc = eval(subs(y,x,c));
+ end
+ fprintf('\nRoot is: %f\n', c);
+end
 
-for(i=0;i<m;i++)
-{
- for(j=0;j<q;j++)
- {
- c[i][j]=0;
- for(k=0;k<n;k++)
- {
- c[i][j]= c[i][j]+a[i][k]*b[k][j];
- }
- }
-}
-printf("the product of 2 matrices are : \n");
-for(i=0;i<m;i++)
-{
- for(j=0;j<q;j++)
-
- printf("%d\t",c[i][j]);
-
-printf("\n");
-}
-}
-}
-/*Output
-student@student-virtual-machine:~$ cc matrix.c
-student@student-virtual-machine:~$ ./a.out
-enter the order of matrix A
-2 2
-enter the order of matrix B
-2 2
-enter the elements of the first matrix
-1 2 3 4
-enter the elements of the second matrix
-1 1 1 1
-the product of 2 matrices are :
-3 3
-7 7
-student@student-virtual-machine:~$ ./a.out
-enter the order of matrix A
-2 2
-enter the order of matrix B
-3 2
-matrix multiplication not possible
-*/
+OUTPUT:
+Enter non-linear equations:
+sin(x)+cos(x)+exp(x)-8
+Enter first guess: 2
+Enter second guess: 3
+a b c f(c)
+2.000000 3.000000 2.010374 -0.054516
+2.010374 3.000000 2.015152 -0.025119
+2.015152 3.000000 2.017349 -0.011551
+2.017349 3.000000 2.018358 -0.005306
+2.018358 3.000000 2.018821 -0.002437
+2.018821 3.000000 2.019034 -0.001119
+2.019034 3.000000 2.019132 -0.000514
+2.019132 3.000000 2.019177 -0.000236
+2.019177 3.000000 2.019197 -0.000108
+2.019197 3.000000 2.019207 -0.000050
+2.019207 3.000000 2.019211 -0.000023
+2.019211 3.000000 2.019213 -0.000010
+Root is: 2.019214
 
 
-//6. C Program to Bubble Sort
-#include<stdio.h>
-void main()
-{
- int n,i,j,a[20],temp;
- printf("enter the number of elements\n");
- scanf("%d",&n);
- /*read or input the elements to sort*/
+8)   Write and execute the MATLAB code that uses Newton's forward interpolation formula and find the
+approximate value of f (9) given the following data points (x,y) = (8,10), (10,19), (12,32.5), (14,54),
+(16,89.5) & (18,154).
+clc;
+clear all;
+x=[8,10,12,14,16,18];
+y=[10,19,32.5,54,89.5,154];
+n=length(x);
+X=9;
+h=x(2)-x(1);
+F=zeros(n,n);
+F(:,1)=y;
+for j=2:n
+ for i=j:n
+F(i,j)=F(i,j-1)-F(i-1,j-1);
+ end
+end
+F
+p=(X-x(1))/h;
+d=F(1,1)+p*F(2,2)+p*(p1)*F(3,3)/factorial(2)+p*(p-1)*(p2)*F(4,4)/factorial(3)+p*(p-1)*(p-2)*(p3)*F(5,5)/factorial(4)+p*(p-1)*(p-2)*(p3)*(p-4)*F(6,6)/factorial(5);
+fprintf('f(%0.4f)= %0.4f \n', X, d);
 
- printf("read the elements\n");
- for(i=0;i<n;i++)
- scanf("%d",&a[i]);
+OUTPUT:
+F =
+ 10.0000 0 0 0 0 0
+ 19.0000 9.0000 0 0 0 0
+ 32.5000 13.5000 4.5000 0 0 0
+ 54.0000 21.5000 8.0000 3.5000 0 0
+ 89.5000 35.5000 14.0000 6.0000 2.5000 0
+ 154.0000 64.5000 29.0000 15.0000 9.0000 6.5000
+f(9.0000)= 14.2363
 
- /*method to sort the elements in ascending order*/
- for (i=1 ; i<n ; i++) //outer loop
- {
- for (j = 0 ; j <n-i ; j++) // inner loop
- { if (a[j] > a[j+1])
- { temp = a[j];
- a[j] = a[j+1];
- a[j+1] = temp;
- }
- }
- }
 
- /* print the sorted array*/
+9)  Write and execute the MATLAB code that uses Newton's backward interpolation formula and find the
+approximate value of f(17) given the following data points (x,y) = (8,10), (10,19), (12,32.5), (14,54),
+(16,89.5) & (18,154).
+clc;
+clear all;
+x=[8,10,12,14,16,18];
+y=[10,19,32.5,54,89.5,154];
+n=length(x);
+X=17;
+h=x(2)-x(1);
+F=zeros(n,n);
+F(:,1)=y;
+for j=2:n
+ for i=j:n
+F(i,j)=F(i,j-1)-F(i-1,j-1);
+ end
+end
+F
+p=(X-x(n))/h;
+d=F(6,1)+p*F(6,2)+p*(p+1)*F(6,3)/factoria
+l(2)+p*(p+1)*(p+2)*F(6,4)/factorial(3)+p*
+(p+1)*(p+2)*(p+3)*F(6,5)/factorial(4)+p*(
+p+1)*(p+2)*(p+3)*(p+4)*F(6,6)/factorial(5
+);
+fprintf('f(%0.4f)= %0.4f \n', X, d);
 
- printf("the sorted elements are\n");
- for(i=0;i<n;i++)
- printf("%d\n",a[i]);
-}
-/*student@student-virtual-machine:~$ cc bubble.c
-student@student-virtual-machine:~$ ./a.out
-enter the number of elements
-5
-read the elements
-50 40 30 20 10
-the sorted elements are
-10
-20
-30
-40
-50
-student@student-virtual-machine:~$ cc bubble.c
-student@student-virtual-machine:~$ ./a.out
-enter the number of elements
-3
-read the elements
-2 1 8
-the sorted elements are
+OUTPUT:
+ 10.0000 0 0 0 0 0
+ 19.0000 9.0000 0 0 0 0
+ 32.5000 13.5000 4.5000 0 0 0
+ 54.0000 21.5000 8.0000 3.5000 0 0
+ 89.5000 35.5000 14.0000 6.0000 2.5000 0
+ 154.0000 64.5000 29.0000 15.0000 9.0000 6.5000
+f(17.0000)= 116.6582
+
+
+10)  Write and execute the MATLAB code to evaluate ∫ √(sin(x) + cos(x))
 1
-2
-8
-*/
+0
+dx with 6 sub intervals by using
+Simpson’s 1/3rd Rule
+clc
+clear all
+close all
+f=@(x)(sqrt(sin(x)+cos(x)));
+a=input('Enter the lower limit a:');
+b=input('Enter the upper limit b:');
+n=input('Enter the number of subintervals n:');
+h=(b-a)/n;
+if rem(n,2)==1
+fprintf('\n Please enter valid n !!');
+n=input('\n Enter n as even number:');
+end
+k=1:1:n-1;
+S=f(a+k.*h);
+out=(h/3).*(f(a)+f(b)+4.*(S(1)+S(3)+S(5))
++2.*(S(2)+S(4)));
+fprintf('The value of the integration is
+%.4f',out)
+
+OUTPUT:
+Enter the lower limit a:
+0
+Enter the upper limit b:
+1
+Enter the number of sub-intervals n:
+6
+The value of the integration is 1.1394
 
 
-/7a)C Program to compute cos(x) using Taylorâ€™s Series approximation.
-//Compare your result with the built-in math library function.
-# include<stdio.h>
-#include<math.h>
-void main()
-{
- int i,n;
- float x,sum=1,t=1;
- printf("Enter the values for x:");
- scanf("%f",&x);
- printf("\n Enter the values for n:");
- scanf("%d",&n);
- x=x*3.14159/180;
- for(i=1;i<=n;i++)
- {
- t=t*(-1)*x*x/(2*i*(2*i-1));
- sum+=t;
- }
- printf("The value of cos(%f) is =%.4f\n",x,sum);
- printf("Using Library function, the value of cos(%f) is
-=%.4f\n",x,cos(x));
-}
-/*output
-student@student-virtual-machine:~$ cc labcosine2.c -lm
-student@student-virtual-machine:~$ ./a.out
-Enter the values for x:45
-Enter the values for n:5
-The value of cos(0.785398) is =0.7071
-Using Library function, the value of cos(0.785398) is =0.7071
-*/
+11)  Write and execute the MATLAB code to evaluate ∫ √sin(x)
+𝜋⁄2
+0
+dx with 6 subintervals by using Simpson’s
+3/8th
+ Rule
+clc
+clear all
+close all
+f=@(x)(sqrt(sin(x)));
+a=input('Enter the lower limit a:');
+b=input('Enter the upper limit b:');
+n=input('Enter the number of subintervals n:');
+h=(b-a)/n;
+if rem(n,2)==1
+fprintf('\n Please enter valid n !!');
+n=input('\n Enter n as even number:');
+end
+k=1:1:n-1;
+S=f(a+k.*h);
+out=(3*h/8).*(f(a)+f(b)+3.*(S(1)+S(2)+S(4
+)+S(5))+2.*S(3));
+fprintf('The value of the integration is
+%.4f',out)
+
+OUTPUT:
+Enter the lower limit a:
+0
+Enter the upper limit b:
+pi/2
+Enter the number of sub-intervals n:
+6
+The value of the integration is 1.1849
 
 
-//7b)C Program to compute sin(x) using Taylorâ€™s Series approximation.
-//Compare your result with the built-in math library function.
-#include<stdio.h>
-#include<math.h>
-void main()
-{
- int i, n;
- float x, sum, t;
+12)  Write and execute the MATLAB code to solve 𝑑𝑦
+𝑑𝑥
+= 3𝑥 + 𝑦/2, 𝑦(0) = 1 by Runge Kutta method for 𝑦(0.5)
+taking h=0.1. Display output for each value of x upto 0.5.
+clc;
+f = @(x,y)3.*x+(y./2) ;
+x=0; %initial value of x
+y = 1; %initial value of y
+h=0.1; % step length
+xn=0.5;%final value of x
+n=(xn-x)/h; % number of iterations
+for i=1:n
+ fprintf("Interation number=%f\n",i)
+ disp(" x y")
+ z=[x y];
+ disp(z)
+ k1 = h*f(x,y)
+ k2 = h*f(x+h/2,y+k1/2)
+ k3 = h*f(x+h/2,y+k2/2)
+ k4 = h*f(x+h, y+k3)
+ y= y+(k1 + 2* k2 +2*k3+k4 )/6
+ x =x+h;
+ end
 
+ OUTPUT:
+Interation number=1.000000
+ x y
+ 0 1
+k1 = 0.0500 k2 = 0.0663
+k3 = 0.0667 k4 = 0.0833
+ y = 1.0665
+Interation number=2.000000
+ x y
+ 0.1000 1.0665
+k1 = 0.0833 k2 = 0.1004
+k3 = 0.1008 k4 = 0.1184
+ y = 1.1672
+Interation number=3.000000
+ x y
+ 0.2000 1.1672
+k1 = 0.1184k2 = 0.1363
+k3 = 0.1368k4 = 0.1552
+ y = 1.3038
+Interation number=4.000000
+ x y
+ 0.3000 1.3038
+k1 = 0.1552k2 = 0.1741
+k3 = 0.1745k4 = 0.1939
+ y = 1.4782
+Interation number=5.000000
+ x y
+ 0.4000 1.4782
+k1 = 0.1939k2 = 0.2138
+k3 = 0.2143k4 = 0.2346
+ y = 1.6923
 
- printf(" Enter the value for x in degree : ");
- scanf("%f",&x);
+ 
+13)  Write and execute the MATLAB code to solve 𝑑𝑦
+𝑑𝑥
+= 𝑙𝑜𝑔𝑒(𝑥 + 𝑦), 𝑦(1) = 2 by Modified Euler’s method for
+𝑦(1.4)taking h=0.1. Display output for each value of x upto 1.4. Perform 4 modifications at every step.
+clear all
+clc
+f =@(x,y) log(x+y);
+x0=1; %initial value of x
+y0 =2; %initial value of y
+h=0.1; % step length
+xn=1.4;%final value of x
+n=(xn-x0)/h; % number of iterations
+for i=1:n+1
+ fprintf("Interation number=%f\n",i)
+y1E=y0+h*f(x0,y0)
+for j=1:3
+y1=y0+h/2*(f(x0,y0)+f(x0+h,y1E))
+y1E=y1;
+j=j+1;
+end
+y0=y1;
+x0=x0+h;
+n=n+1;
+end
+x=[x0(:)];
+y=[y0(:)];
+disp(" x y")
+z=[x y];
+disp(z)
 
- printf(" Enter the value for n : ");
- scanf("%d",&n);
-
- x=x*3.14159/180;
- t=x;
- sum=x;
-
- /* Loop to calculate the value of Sine */
- for(i=1;i<=n;i++)
- {
- t=(t*(-1)*x*x)/(2*i*(2*i+1));
- sum=sum+t;
- }
-
- printf(" The value of Sin(%f) = %.4f\n",x,sum);
- printf("using library function sin(%f)=%.4f\n",x,sin(x));
-
-
-}
-/*Output
-student@student-virtual-machine:~$ cc labsine2.c -lm
-student@student-virtual-machine:~$ ./a.out
-Enter the value for x in degree : 45
-Enter the value for n : 5
-The value of Sin(0.785398) = 0.7071
-using library function sin(0.785398)=0.7071
-*/
-
-
-
-//8. C Program to implement String operations such as compare,
-concatenate and string length -- 1st method.
-# include<stdio.h>
-int length(char s1[]);
-void compare(char s1[], char s2[]);
-void concat(char s1[], char s2[]);
-void main()
-{
- char s1[200], s2[100];
- int len;
- printf("\nEnter the String s1: ");
- gets(s1);
- printf("\nEnter String s2 :");
- gets(s2);
-len = length(s1);
-printf("Length of the String s1 is : %d\n", len);
-compare(s1,s2);
-concat(s1, s2);
-}
-//to find the length of the string
-int length(char s1[])
-{
- int i = 0;
- while (s1[i] != '\0')
- i++;
- return (i);
-}
-void compare(char s1[], char s2[])
-{
- int i = 0;
- while (s1[i] == s2[i] && s1[i] != '\0')
- i++;
- if (s1[i] > s2[i])
- printf("String Not equal\n");
- else if (s1[i] < s2[i])
- printf("String Not equal\n");
- else
- printf("Strings are equal\n");
-}
-void concat(char s1[], char s2[])
-{
- int i, j;
- i = length(s1);
- s1[i]=' ';
- i=i+1;
- for (j = 0; s2[j] != '\0';i++,j++)
- {
- s1[i] = s2[j];
- }
- s1[i] = '\0';
- printf("Concatenated String: %s\n",s1);
-}
-/*Output
-student@student-virtual-machine:~$ cc strings.c
-strings.c: In function â€˜mainâ€™:
-strings.c:14:1: warning: â€˜getsâ€™ is deprecated (declared at
-/usr/include/stdio.h:638) [-Wdeprecated-declarations]
-gets(s1);
-^
-strings.c:16:1: warning: â€˜getsâ€™ is deprecated (declared at
-/usr/include/stdio.h:638) [-Wdeprecated-declarations]
-gets(s2);
-^
-/tmp/ccxgvhDc.o: In function `main':
-strings.c:(.text+0x34): warning: the `gets' function is dangerous and
-should not be used.
-student@student-virtual-machine:~$ ./a.out
-Enter the String s1: water
-Enter String s2 :air
-Length of the String s1 is : 5
-String Not equal
-Concatenated String: water air
-student@student-virtual-machine:~$ ./a.out
-Enter the String s1: air
-Enter String s2 :air
-Length of the String s1 is : 3
-Strings are equal
-Concatenated String: air air
-*/
-
-
-//8.C Program to implement String operations such as compare, concatenate
-and string length -- 2nd method
-# include<stdio.h>
-//to find the length of the string
-int length(char s1[])
-{
-int i = 0;
-while (s1[i] != '\0')
-i++;
-return (i);
-}
-//to campare two strings
-void compare(char s1[], char s2[])
-{
- int i = 0;
- while (s1[i] == s2[i] && s1[i] != '\0')
- i++;
- if (s1[i] > s2[i])
- printf("String Not equal\n");
- else if (s1[i] < s2[i])
- printf("String Not equal\n");
- else
- printf("Strings are equal\n");
-
-}
-//to join two strings
-void concat(char s1[], char s2[])
-{
-int i, j;
-i = length(s1);
- s1[i]=' ';
- i=i+1;
-for (j = 0; s2[j] != '\0';i++,j++) {
-s1[i] = s2[j];
-}
-s1[i] = '\0';
-printf("Concatenated String: %s\n",s1);
-}
-void main()
-{
- char s1[200], s2[100];
- int len;
- printf("\nEnter the String s1: ");
- scanf("%s",s1);
- printf("\nEnter String s2 :");
- scanf("%s",s2);
- len = length(s1);
- printf("Length of the String s1 is : %d\n", len);
- compare(s1,s2);
- concat(s1, s2);
-}
-/*Output
-student@student-virtual-machine:~$ cc strings2.c
-student@student-virtual-machine:~$ ./a.out
-Enter the String s1: cat
-Enter String s2 :rat
-Length of the String s1 is : 3
-String Not equal
-Concatenated String: cat rat
-student@student-virtual-machine:~$ ./a.out
-Enter the String s1: cat
-Enter String s2 :cat
-Length of the String s1 is : 3
-Strings are equal
-Concatenated String: cat cat
-*/
-
-
-//9.C Program to read, write and compute average marks and the students
-scoring above and
-//below average marks for a class of N students.
-#include<stdio.h>
-struct student
-{
-char name[20];
-int stdid;
-float marks;
-char grade[1];
-};
-void main()
-{
-int i,n;
-float sum=0, average;
-struct student std[100];
-printf("\nEnter the number of student in class\n");
-scanf("%d",&n);
-for(i=0;i<n;i++)
-{
- printf("Details of students are\n");
- scanf("%s",std[i].name);
- scanf("%d",&std[i].stdid);
- scanf("%f",&std[i].marks);
- scanf("%s",std[i].grade);
-}
-sum=0;
-for(i=0;i<n;i++)
- sum=sum+std[i].marks;
-average=sum/n;
-printf("The average marks is %f\n",average);
-printf("\n\ndetails of the students above average are\n");
-for(i=0;i<n;i++)
-{
- if(std[i].marks>average)
- {
- printf("name of the student is %s\n",std[i].name);
- printf("id of the student is %d\n",std[i].stdid);
- printf("marks of the student is %f\n",std[i].marks);
- printf("grade of the student is %s\n",std[i].grade);
- }
-}
-printf("\n\ndetails of the students below average are\n");
-for(i=0;i<n;i++)
-{
- if(std[i].marks<average)
- {
- printf("name of the student is %s\n",std[i].name);
- printf("id of the student is %d\n",std[i].stdid);
- printf("marks of the student is %f\n",std[i].marks);
- printf("grade of the student is %s\n",std[i].grade);
- }
-}
-}
-/*OUtput
-student@student-virtual-machine:~$ cc student.c
-student@student-virtual-machine:~$ ./a.out
-Enter the number of student in class
-2
-Details of students are
-AAA 1 90 A
-Details of students are
-BBB 2 56 C
-The average marks is 73.000000
-details of the students above average are
-name of the student is AAA
-id of the student is 1
-marks of the student is 90.000000
-grade of the student is A
-details of the students below average are
-name of the student is BBB
-id of the student is 2
-marks of the student is 56.000000
-grade of the student is C
-*/
-
-
-//10. C Program using pointers to compute the sum, mean and standard
-deviation of all elements stored in an array of N real //elements.
-#include<stdio.h>
-#include<math.h>
-void main()
-{
- int arr[10],n,i,sum=0;
- float mean, variance, std_deviation;
-//Assigning array to pointer
- int *ptr=arr;
- printf("Enter the number of elements you want to use(<=10):\n");
- scanf("%d",&n);
- printf("Enter %d Elements:\n",n);
- for (i=0;i<n;i++)
- scanf("%d",&arr[i]);
-//sum of elements of array using pointer
- for(i=0;i<n;i++)
- {
- sum+=*ptr;
- *ptr++;
- }
- mean=sum/n;
-//Display sum,mean and standard deviation on screen
- printf("Sum = %d\n mean = %0.2f\n",sum,mean);
- variance = sum / (float)n;
- std_deviation = sqrt(variance);
- printf("variance of all elements = %.2f\n", variance);
- printf("Standard deviation = %.2f\n", std_deviation);
-}
-/*Output
-student@student-virtual-machine:~$ cc mean.c -lm
-student@student-virtual-machine:~$ ./a.out
-Enter the number of elements you want to use(<=10):
-3
-Enter 3 Elements:
-2 3 1
-Sum = 6
-mean = 2.00
-variance of all elements = 2.00
-Standard deviation = 1.41
-*/
+OUTPUT:
+Interation number=1.000000
+y1E = 2.1099
+y1 = 2.1132
+y1 = 2.1133
+y1 = 2.1133
+Interation number=2.000000
+y1E = 2.2300
+y1 = 2.2333
+y1 = 2.2333
+y1 = 2.2333
+Interation number=3.000000
+y1E = 2.3567
+y1 = 2.3598
+y1 = 2.3599
+y1 = 2.3599
+Interation number=4.000000
+y1E = 2.4896
+y1 = 2.4927
+y1 = 2.4927
+y1 = 2.4927
+ x y
+ 1.4000 2.4927

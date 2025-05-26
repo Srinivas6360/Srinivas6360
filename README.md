@@ -54,3 +54,58 @@ stem(n, s2_rec, 'filled', 'Color', [0.5 0 0.5]); title('Recovered Signal 2'); gr
 
 subplot(3,3,9);
 stem(n, s3_rec, 'filled', 'Color', [0.9 0.4 0]); title('Recovered Signal 3'); grid on;
+
+
+
+%FM modulation
+Ac=10; %amplitude of carrier wave
+fm=10; %frequency of message signal (Hz)
+fc=1000; %carrier frequency (Hz)
+F=10000; %sampling frequency (Hz)
+kf=800; %frequency sensitivity
+mi=kf/fm; % modulation index
+T=1/F;
+t=0:T:0.1;% time vector
+ 
+%1.Message signal
+m=sin(2*pi*fm*t);
+figure(1);
+subplot(311); % plot at 1st position in a 3-by-1 grid 
+plot(t,m); xlabel('t(sec)'); ylabel('m(t)');
+title('Message signal Vs Time')
+ 
+%Spectrum of message signal
+n=length(m); %length returns period of the message signal
+M=fftshift(fft(m,n)); %zero-centered fast fourier transform
+f=F*[-n/2:n/2-1]/n; %zero-centered frequency range
+figure(2);subplot(311); 
+plot(f,abs(M));xlabel('f(Hz)'); ylabel('M(f)');
+title('Spectrum of Message signal');
+ 
+%2.Carrier wave
+c=Ac*sin(2*pi*fc*t);
+figure(1); subplot(312);
+plot(t,c); xlabel('t(sec'); ylabel('c(t)');
+title('Carrier signal Vs Time');
+ 
+%Spectrum of carrier wave
+N=length(c);
+C=fftshift(fft(c,N));
+f=F*[-N/2:N/2-1]/N;
+figure(2); subplot(312);
+plot(f,abs(C)); xlabel('f(Hz)'); ylabel('C(f)');
+title('Spectrum of Carrier wave');
+ 
+%3.FM modulated signal
+x_fm=Ac*sin(2*pi*fc*t-(mi*cos(2*pi*fm*t))); 
+figure(1); subplot(313);
+plot(t,x_fm); xlabel('t(Sec)'); ylabel('x_f_m(t)');
+title('FM modulated signal Vs Time');
+ 
+%Spectrum of fm modulated signal
+l=length(x_fm);
+X_fm=fftshift(fft(x_fm,l));
+f=F*[-l/2:l/2-1]/l;
+figure(2); subplot(313);
+plot(f,abs(X_fm)); xlabel('f(Hz)'); ylabel('X_f_m(f)');
+title('Spectrum of FM modulated signal');
